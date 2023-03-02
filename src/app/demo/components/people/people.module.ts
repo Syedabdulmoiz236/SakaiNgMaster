@@ -1,6 +1,10 @@
+import { RouterModule } from '@angular/router';
+import { ResourceTrainingComponent } from './resource-training/resource-training.component';
+import { ResourceKnowledgeComponent } from './resource-knowledge/resource-knowledge.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PeopleRoutingModule } from './people-routing.module';
+import { ButtonModule } from 'primeng/button';
 
 
 
@@ -8,12 +12,16 @@ import { PeopleRoutingModule } from './people-routing.module';
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [     
   
   ],
   imports: [
     CommonModule,
-    PeopleRoutingModule
+    PeopleRoutingModule,
+    RouterModule,
+    ButtonModule,
+
+
   
   ]
 })

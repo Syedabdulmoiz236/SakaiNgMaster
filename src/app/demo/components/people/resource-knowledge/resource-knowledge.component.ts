@@ -1,14 +1,18 @@
+import { ApiService } from './../../../api/api.service';
+import { ResourceKnowledgeModel } from './resource-knowledge.model';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MenuItem, SelectItem } from 'primeng/api';
-import { Subscription } from 'rxjs';
-import { Product } from 'src/app/demo/api/product';
-import { ProductService } from 'src/app/demo/service/product.service';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { MenuItem, Message, MessageService, SelectItem } from 'primeng/api';
+import { CountryService } from 'src/app/demo/service/country.service';
+import{FormBuilder,FormGroup}from '@angular/forms'
+
 @Component({
   selector: 'app-resource-knowledge',
   templateUrl: './resource-knowledge.component.html',
   styleUrls: ['./resource-knowledge.component.scss'],
   styles: [`
+  :host ::ng-deep .p-message {
+			margin-left: .25em;
+		}
   :host ::ng-deep .p-multiselect {
       min-width: 15rem;
   }
@@ -53,13 +57,17 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
   :host ::ng-deep .p-colorpicker {
       width: 2.5em
   }
-`]
+`],
+providers: [MessageService]
+
 })
-export class ResourceKnowledgeComponent implements OnInit , OnDestroy{
-    items!: MenuItem[];
+export class ResourceKnowledgeComponent implements OnInit {
+    formValue !: FormGroup;
+    resourceknowledgeModelObj: ResourceKnowledgeModel=new ResourceKnowledgeModel();
+
+
     countries: any[] = [];
-    valRadio: string = '';
-    
+
     filteredCountries: any[] = [];
 
     selectedCountryAdvanced: any[] = [];
@@ -67,6 +75,8 @@ export class ResourceKnowledgeComponent implements OnInit , OnDestroy{
     valSlider = 50;
 
     valColor = '#424242';
+
+    valRadio: string = '';
 
     valCheck: string[] = [];
 
@@ -91,31 +101,78 @@ export class ResourceKnowledgeComponent implements OnInit , OnDestroy{
     valSelect2: string = "";
 
     valueKnob = 20;
-    products!: Product[];
 
-    chartData: any;
+    constructor(private countryService: CountryService , private formbuilder: FormBuilder , private api:ApiService, private service: MessageService) { }
 
-    chartOptions: any;
+    
 
-    subscription!: Subscription;
-piedata: any;
-pieOptions: any;
-
-    constructor(private productService: ProductService, public layoutService: LayoutService) {
-        this.subscription = this.layoutService.configUpdate$.subscribe(() => {
-            this.layoutService
+    ngOnInit() {
+        this.formValue = this.formbuilder.group({
+            textarea: [''],
+        })
+        this.countryService.getCountries().then(countries => {
+            this.countries = countries;
         });
     }
-    ngOnDestroy(): void {
-        throw new Error('Method not implemented.');
-    }
-    ngOnInit(): void {
-        throw new Error('Method not implemented.');
-    }
- 
-    
-  
+    filterCountry(event: any) {
+        const filtered: any[] = [];
+        const query = event.query;
+        for (let i = 0; i < this.countries.length; i++) {
+            const country = this.countries[i];
+            if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+                filtered.push(country);
+            }
+        }
 
-   
+        this.filteredCountries = filtered;
+    }
+    postTextArea(){
+        this.resourceknowledgeModelObj.textarea = this.formValue.value.textarea;
+        this.api.postComment(this.resourceknowledgeModelObj)
+        .subscribe(res=>{
+            console.log(res);
+            alert("Comment Added Successfully")
+        },
+        err=>{
+            alert('Something went wrong')
+        })
+    }
 
+    msgs: Message[] = [];
+
+    showInfoViaToast() {
+        this.service.add({ key: 'tst', severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
+    }
+
+    showWarnViaToast() {
+        this.service.add({ key: 'tst', severity: 'warn', summary: 'Warn Message', detail: 'There are unsaved changes' });
+    }
+
+    showErrorViaToast() {
+        this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
+    }
+
+    showSuccessViaToast() {
+        this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
+    }
+
+    showInfoViaMessages() {
+        this.msgs = [];
+        this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
+    }
+
+    showWarnViaMessages() {
+        this.msgs = [];
+        this.msgs.push({ severity: 'warn', summary: 'Warn Message', detail: 'There are unsaved changes' });
+    }
+
+    showErrorViaMessages() {
+        this.msgs = [];
+        this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
+    }
+
+    showSuccessViaMessages() {
+        this.msgs = [];
+        this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Message sent' });
+    }
 }

@@ -29,36 +29,37 @@ export class AppMenuComponent implements OnInit {
                     items:[
                         {label: 'Resource Knowledge Gap',
                      icon:'pi pi-circle',
-                    routerlink:['/people/resource-knowledge']
+                    routerLink:['/people/resource-knowledge']
                         },
 
                         {label: 'Resource Training Req',
                         icon:'pi pi-circle',
-                        routerlink:['/people/resource-training']
+                        routerLink:['/people/resource-training']
                            },
                            
                            {label: 'FTE Count vs P&L',
                            icon:'pi pi-circle',
-                           routerlink:['/people/fte-count-pnl']
+                           routerLink:['/people/fte-count-pnl']
                               },
                         {label: 'Technology Skills Req',
                         icon:'pi pi-circle',
-                        routerlink:['/people/technology-skills']
+                        routerLink:['/people/technology-skills']
                            },
                            {label: 'Rotation / Retention',
                         icon:'pi pi-circle',
-                        routerlink:['/people/rotation-retention']
+                        routerLink:['/people/rotation-retention']
                        
                            },
                            {label: 'Others',
                         icon:'pi pi-circle',
-                        routerlink:['/people/others']
+                        routerLink:['/people/others']
                            },
 
                     ]
                 }
                 ]
             },
+           
             {
                 label: 'Infrastructure',
                 items: [
@@ -71,6 +72,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'Scope of Audit', icon: 'pi pi-fw pi-book', routerLink: ['/'] }
                 ]
             },
+          
             {
                 label: 'Contact Matrix',
                 items: [

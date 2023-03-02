@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuItem, SelectItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/demo/api/product';
+import { CountryService } from 'src/app/demo/service/country.service';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
@@ -57,61 +58,68 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 `]
 })
 
-export class ResourceTrainingComponent implements OnInit ,OnDestroy {
-  items!: MenuItem[];
-  countries: any[] = [];
-  valRadio: string = '';
+export class ResourceTrainingComponent implements OnInit {
+    countries: any[] = [];
+
+    filteredCountries: any[] = [];
+
+    selectedCountryAdvanced: any[] = [];
+
+    valSlider = 50;
+
+    valColor = '#424242';
+
+    valRadio: string = '';
+
+    valCheck: string[] = [];
+
+    valCheck2: boolean = false;
+
+    valSwitch: boolean = false;
+
+    cities: SelectItem[] = [];
+
+    selectedList: SelectItem = { value: '' };
+
+    selectedDrop: SelectItem = { value: '' };
+
+    selectedMulti: any[] = [];
+
+    valToggle = false;
+
+    paymentOptions: any[] = [];
+
+    valSelect1: string = "";
+
+    valSelect2: string = "";
+
+    valueKnob = 20;
+
+    constructor(private countryService: CountryService) { }
+
+    
+
+    ngOnInit()  {
+        this.countryService.getCountries().then(countries => {
+            this.countries = countries;
+        });
+    }
+    filterCountry(event: any) {
+        const filtered: any[] = [];
+        const query = event.query;
+        for (let i = 0; i < this.countries.length; i++) {
+            const country = this.countries[i];
+            if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+                filtered.push(country);
+            }
+        }
+
+        this.filteredCountries = filtered;
+    }
+ 
+    
   
-  filteredCountries: any[] = [];
 
-  selectedCountryAdvanced: any[] = [];
+   
 
-  valSlider = 50;
-
-  valColor = '#424242';
-
-  valCheck: string[] = [];
-
-  valCheck2: boolean = false;
-
-  valSwitch: boolean = false;
-
-  cities: SelectItem[] = [];
-
-  selectedList: SelectItem = { value: '' };
-
-  selectedDrop: SelectItem = { value: '' };
-
-  selectedMulti: any[] = [];
-
-  valToggle = false;
-
-  paymentOptions: any[] = [];
-
-  valSelect1: string = "";
-
-  valSelect2: string = "";
-
-  valueKnob = 20;
-  products!: Product[];
-
-  chartData: any;
-
-  chartOptions: any;
-
-  subscription!: Subscription;
-piedata: any;
-pieOptions: any;
-
-  constructor(private productService: ProductService, public layoutService: LayoutService) {
-      this.subscription = this.layoutService.configUpdate$.subscribe(() => {
-          this.layoutService
-      });
-  }
-  ngOnDestroy(): void {
-      throw new Error('Method not implemented.');
-  }
-  ngOnInit(): void {
-      throw new Error('Method not implemented.');
-  }
 }

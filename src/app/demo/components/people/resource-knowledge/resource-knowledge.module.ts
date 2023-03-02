@@ -1,3 +1,8 @@
+import { MessageModule } from 'primeng/message';
+import { ApiService } from './../../../api/api.service';
+import { HttpClientModule } from '@angular/common/http';
+
+import { RouterModule } from '@angular/router';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -8,7 +13,11 @@ import { ResourceKnowledgeRoutingModule } from './resource-knowledge-routing.mod
 import { ResourceKnowledgeComponent } from './resource-knowledge.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { MessagesDemoRoutingModule } from '../../uikit/messages/messagesdemo-routing.module';
+import { MessagesModule } from 'primeng/messages';
+
 
 @NgModule({
     declarations:[ResourceKnowledgeComponent],
@@ -21,7 +30,21 @@ import { FormsModule } from '@angular/forms';
         TableModule,
         PanelMenuModule,
         ButtonModule,
+        RouterModule,
         InputTextareaModule,
+        RadioButtonModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MessagesDemoRoutingModule,
+        MessagesModule,
+        MessageModule,
+
+
+
+        
+
+
+        
     ]
 })
 export class ResourceKnowledgeModule{}
