@@ -1,0 +1,84 @@
+<h2>Others</h2>
+<div class="card ">
+		<h6>Please Select the options you want to perform:</h6>
+		<div class="p-d-flex">
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Exclation" [(ngModel)]="valCheck" (onChange)="GetSelectedBox($event)" id="ny"></p-checkbox>
+					<label for="ny">Exclations</label>
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Appreciations" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Appreciations</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-8">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="SEM Comments" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">SEM comments(are TDMs connecting with SEMs)</label>
+					
+				</div>
+			</div>	
+			<div class="col-12 md:col-8">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Regional Head" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Regional Head Feedback</label>
+					
+				</div>
+			</div>	
+			<div class="col-12 md:col-8">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Delivery Head" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Delivery Head Get Feedback From Regional Head</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-8">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Aggregate Feedback" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Aggregate Feedback</label>
+					
+				</div>
+			</div>		
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Check With Bilal" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Check With Bilal</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Service Delivery" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Service Delivery Quality</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="SLA Breaches" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">SLA Breaches</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Penalty Liability" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Penalty Liability</label>
+					
+				</div>
+			</div>
+		</div>
+
+ 
+			<div class="Button">
+				<button pButton pRipple type="button" (click)="onSubmit()" label="Submit" class="p-button-raised p-button-secondary mr-2 mb-2"></button>
+			</div>
+			<div *ngIf="isValid">
+					<p-tabMenu styleClass="mb-5" [model]="scrollableItems"  [scrollable]="true" [activeItem]="activeItem2"></p-tabMenu>
+					<router-outlet ></router-outlet>
+			</div>	
+</div>

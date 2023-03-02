@@ -1,25 +1,33 @@
 <h2>FTE Count vs P&L</h2>
 <div class="card">
+	<form [formGroup]="formValue" >
 	<h4>Refer To Financial Lab :</h4>
-	<h5>Compiliances</h5>
+	<h5>Compliance</h5>
 	<div class="grid formgrid">
 		<div class="col-12 md:col-4">
 			<div class="field-radiobutton">
-				<p-radioButton name="city" value="Chicago" [(ngModel)]="valRadio" id="city1"></p-radioButton>
-				<label for="city1">Yes</label>
+				<p-radioButton (onClick)="postFinancialLabDetails()" value="Yes" [(ngModel)]="valRadio" id="city1"></p-radioButton>
+				<label for="city1" formControlName="Yes">Yes</label>
 			</div>
 		</div>
 		<div class="col-12 md:col-4">
 			<div class="field-radiobutton">
-				<p-radioButton name="city" value="Los Angeles" [(ngModel)]="valRadio"
-							   id="city2"></p-radioButton>
+				<p-radioButton (onClick)="postFinancialLabDetails()" value="No" [(ngModel)]="valRadio"
+							   id="city2" formControlName="No"></p-radioButton>
 				<label for="city2">No</label>
+			</div>
+		</div>
+		<div class="col-12 md:col-4">
+			<div class="field-radiobutton">
+				<p-radioButton (onClick)="postFinancialLabDetails()" value="Other" [(ngModel)]="valRadio" id="city3"></p-radioButton>
+				<label for="city3">Other</label>
 			</div>
 		</div>
 	</div>
 	<h5>Comment Section</h5>
-	<textarea rows="5" cols="30" placeholder="Your Message" class="col-12 mr-7 mb-5" pInputTextarea></textarea>
-	<button pButton pRipple label="Save" class="mr-2 mb-2"></button>
+	<textarea rows="5" cols="30" placeholder="Your Message" class="col-12 mr-7 mb-5" pInputTextarea formControlName="textarea"></textarea>
+	<button (click)="postFinancialLabDetails()" pButton pRipple label="Submit" class="mr-2 mb-2"></button>
+</form>
 </div>
 
 

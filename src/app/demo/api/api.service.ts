@@ -13,5 +13,6 @@ export class ApiService {
     .pipe(map((res:any)=>{
       return res;
     }))
-  }
+  } 
 }
+  

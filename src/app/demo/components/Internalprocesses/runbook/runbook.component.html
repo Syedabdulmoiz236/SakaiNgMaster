@@ -1,0 +1,35 @@
+<h2>Run-Book</h2>
+<div class="card ">
+		<h6>Please Select the options you want to perform:</h6>
+		<div class="p-d-flex">
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Runbook Update" [(ngModel)]="valCheck" (onChange)="GetSelectedBox($event)" id="ny"></p-checkbox>
+					<label for="ny">Runbook Updated</label>
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Date and Ver" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Runbook Updated Date and Ver</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Act Runbook Reviewed" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="la"></p-checkbox>
+					<label for="la">Act Runbook Reviewed</label>
+				</div>
+			</div>
+			
+		</div>
+
+ 
+			<div class="Button">
+				<button pButton pRipple type="button" (click)="onSubmit()" label="Submit" class="p-button-raised p-button-secondary mr-2 mb-2"></button>
+			</div>
+			<div *ngIf="isValid">
+					<p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
+					<router-outlet ></router-outlet>
+			</div>	
+</div>

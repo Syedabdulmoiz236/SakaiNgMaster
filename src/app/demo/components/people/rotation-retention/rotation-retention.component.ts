@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
+import { MenuItem, SelectItem } from 'primeng/api';
 import { CountryService } from 'src/app/demo/service/country.service';
 
 @Component({
@@ -54,6 +54,16 @@ import { CountryService } from 'src/app/demo/service/country.service';
 `]
 })
 export class RotationRetentionComponent implements OnInit {
+    activeItem!: MenuItem;
+    items!: MenuItem[] ;
+    isValid:boolean=false;
+    routeItems!:  MenuItem[];
+    menuItems!: MenuItem[];
+    onSubmit(){
+        this.valCheck=this.valCheck.filter(x=>x.valueOf)
+    this.isValid=true
+    }
+
   countries: any[] = [];
 
   filteredCountries: any[] = [];
@@ -98,6 +108,12 @@ export class RotationRetentionComponent implements OnInit {
       this.countryService.getCountries().then(countries => {
           this.countries = countries;
       });
+      this.routeItems = [
+        { label: 'Resignation', routerLink: 'rrresignation' },
+        { label: 'OpsDBA', routerLink: 'rropsdba' },
+        { label: 'PerfDBA', routerLink: 'rrperfdba' },
+    ];
+    this.activeItem = this.routeItems[0];
   }
   filterCountry(event: any) {
       const filtered: any[] = [];

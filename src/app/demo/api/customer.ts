@@ -13,8 +13,11 @@ export interface Customer {
     name?: string;
     country?: Country;
     company?: string;
-    date?: string;
+    date?: string; 
     status?: string;
     activity?: number;
     representative?: Representative;
+}
+export interface serialnumber{
+    serial?:string
 }

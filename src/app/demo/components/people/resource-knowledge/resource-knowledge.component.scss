@@ -1,0 +1,26 @@
+.col-35{
+    float: left;
+    width: 35%;
+    margin-top: 17px;
+}
+.col-8{
+    float: left;
+    width: 8%;
+    margin-top: 5px;
+}
+
+.col-chk{
+    margin-left: 150px;
+}
+
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.Button{
+    margin-left: 80%
+}
+.Save{
+    margin-left: 80% 
+}

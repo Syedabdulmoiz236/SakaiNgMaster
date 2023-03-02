@@ -1,7 +1,11 @@
+import { ToastModule } from 'primeng/toast';
+import { CheckboxModule } from 'primeng/checkbox';
+import { PerfdbaComponent } from './perfdba.component';
+import { OpsdbaComponent } from './opsdba.component';
+import { BarComponent } from './bar.component';
+import { TabMenuModule } from 'primeng/tabmenu';
 import { MessageModule } from 'primeng/message';
-import { ApiService } from './../../../api/api.service';
 import { HttpClientModule } from '@angular/common/http';
-
 import { RouterModule } from '@angular/router';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ButtonModule } from 'primeng/button';
@@ -17,10 +21,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MessagesDemoRoutingModule } from '../../uikit/messages/messagesdemo-routing.module';
 import { MessagesModule } from 'primeng/messages';
+import { EtlComponent } from './etl.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 
 @NgModule({
-    declarations:[ResourceKnowledgeComponent],
+    declarations:[ResourceKnowledgeComponent, BarComponent, OpsdbaComponent, PerfdbaComponent, EtlComponent],
     imports:[
         ResourceKnowledgeRoutingModule,
         CommonModule,
@@ -38,6 +44,21 @@ import { MessagesModule } from 'primeng/messages';
         MessagesDemoRoutingModule,
         MessagesModule,
         MessageModule,
+        TabMenuModule,
+        CheckboxModule,
+        ToastModule,
+        ConfirmPopupModule,
+        RouterModule.forChild([
+            {path:'', component: ResourceKnowledgeComponent,children:[
+                { path: '', redirectTo: 'bar', pathMatch: 'full' },
+                { path: 'bar', component:BarComponent },
+                { path: 'opsdba', component:OpsdbaComponent },
+                { path: 'perfdba', component:PerfdbaComponent },
+                { path: 'etl', component:EtlComponent },
+
+            ]}
+        ])
+
 
 
 

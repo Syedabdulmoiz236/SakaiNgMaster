@@ -1,0 +1,40 @@
+<h2>Reporting</h2>
+<div class="card ">
+		<h6>Please Select the options you want to perform:</h6>
+		<div class="p-d-flex">
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Weekly Report" [(ngModel)]="valCheck" (onChange)="GetSelectedBox($event)" id="ny"></p-checkbox>
+					<label for="ny">Weekly Report if applicable</label>
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Monthly Report" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Monthly Report</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Quarterly Report" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Quarterly Report if applicable</label>
+					
+				</div>
+			</div>	
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Annual Service" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Annual Service Report</label>
+					
+				</div>
+			</div>		
+		</div>
+			<div class="Button">
+				<button pButton pRipple type="button" (click)="onSubmit()" label="Submit" class="p-button-raised p-button-secondary mr-2 mb-2"></button>
+			</div>
+			<div *ngIf="isValid">
+					<p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
+					<router-outlet ></router-outlet>
+			</div>	
+</div>

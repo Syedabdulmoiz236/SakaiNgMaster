@@ -21,6 +21,12 @@ export class AppMenuComponent implements OnInit {
                 ]
             },
             {
+                label: 'Project Setup',
+                items: [
+                    { label: 'Project Setup', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
+                ]
+            },
+            {
                 label: 'People',
 
                 items:[
@@ -29,7 +35,8 @@ export class AppMenuComponent implements OnInit {
                     items:[
                         {label: 'Resource Knowledge Gap',
                      icon:'pi pi-circle',
-                    routerLink:['/people/resource-knowledge']
+                    routerLink:['/people/resource-knowledge'],
+                    
                         },
 
                         {label: 'Resource Training Req',
@@ -59,58 +66,161 @@ export class AppMenuComponent implements OnInit {
                 }
                 ]
             },
-           
             {
-                label: 'Infrastructure',
+                label: 'Internal Process',
                 items: [
-                    { label: 'Infrastructure', icon: 'pi pi-fw pi-building', routerLink: ['/'] }
-                ]
-            },
-            {
-                label: 'Scope Of Audit',
-                items: [
-                    { label: 'Scope of Audit', icon: 'pi pi-fw pi-book', routerLink: ['/'] }
-                ]
-            },
-          
-            {
-                label: 'Contact Matrix',
-                items: [
-                    { label: 'Contact Matrix', icon: 'pi pi-fw pi-sort-up', routerLink: ['/'] }
-                ]
-            },
-            {
-                label: 'Service Coverage',
-                items: [
-                    { label: 'Service Coverage', icon: 'pi pi-fw pi-wrench', routerLink: ['/'] }
-                ]
-            },
-            {
-                label: 'Customer',
-                items: [
-                    { label: 'Customer', icon: 'pi pi-fw pi-user-edit', routerLink: ['/'] }
+                    { label: 'Internal Process', icon: 'pi pi-fw pi-th-large', 
+                    items:[
+                        {
+                            label:'RunBook',
+                            icon:'pi pi-circle',
+                            routerLink:['/Internalprocesses/runbook']
+                        },
+                        {
+                            label:'Inovation/Automation',
+                            icon:'pi pi-circle',
+                            routerLink:['/Internalprocesses/inovation-automation']
+                        },
+                        {
+                            label:'BCP',
+                            icon:'pi pi-circle',
+                            routerLink:['/Internalprocesses/bcp']
+                        },
+                        {
+                            label:'CMP',
+                            icon:'pi pi-circle',
+                            routerLink:['/Internalprocesses/cmp']
+                        },
+                        {
+                            label:'Operational Tool',
+                            icon:'pi pi-circle',
+                            routerLink:['/Internalprocesses/operational-tools']
+                        },
+                        {
+                            label:'Change Release Mgt',
+                            icon:'pi pi-circle',
+                            routerLink:['/Internalprocesses/change-release']
+                        },
+                        {
+                            label:'Others',
+                            icon:'pi pi-circle',
+                            routerLink:['/Internalprocesses/othersinternal']
+                         
+                        },
+
+                    ]
+                }
                 ]
             },
             {
                 label: 'Financial',
                 items: [
-                    { label: 'Financial', icon: 'pi pi-fw pi-dollar', routerLink: ['/'] }
+                    { label: 'Financial', icon: 'pi pi-fw pi-dollar',
+                    items:[
+                        {
+                            label:'P&L Vs Actual',
+                            icon:'pi pi-circle',
+                            routerLink:['/Financial/pnlactual']
+                        },
+                        {
+                            label:'Utilization/Partial Billable',
+                            icon:'pi pi-circle',
+                            routerLink:['/Financial/utilization']
+                        },
+                        {
+                            label:'Off-Shift',
+                            icon:'pi pi-circle',
+                            routerLink:['Financial/offshift']
+                        },
+                        {
+                            label:'Hours Submission',
+                            icon:'pi pi-circle',
+                            routerLink:['Financial/hours-submission']
+                        },
+                        {
+                            label:'Management Level',
+                            icon:'pi pi-circle',
+                            routerLink:['Financial/management-level']
+                        },
+                        {
+                            label:'Others',
+                            icon:'pi pi-circle',
+                            routerLink:['/Financial/others-financial']
+                         
+                        },
+
+                    ]
+                }
                 ]
             },
             {
-                label: 'Internal Process',
+                label: 'Customer',
                 items: [
-                    { label: 'Internal Process', icon: 'pi pi-fw pi-th-large', routerLink: ['/'] }
+                    { label: 'Customer', icon: 'pi pi-fw pi-user-edit', routerLink: ['/'],
+                    items:[
+                        {
+                            label:'Quality Of Service',
+                            icon:'pi pi-circle',
+                            routerLink:['/customer/quality']
+                        },
+                        {
+                            label:'SLA',
+                            icon:'pi pi-circle',
+                            routerLink:['/customer/sla']
+                        },
+                        {
+                            label:'Incident',
+                            icon:'pi pi-circle',
+                            routerLink:['/customer/incident']
+                        },
+                        {
+                            label:'Responce',
+                            icon:'pi pi-circle',
+                            routerLink:['/customer/responce']
+                        },
+                        {
+                            label:'Reporting',
+                            icon:'pi pi-circle',
+                            routerLink:['/customer/reporting']
+                        },
+                        {
+                            label:'Others',
+                            icon:'pi pi-circle',
+                            routerLink:['/customer/cothers']
+                        },
+
+                    ]
+                }
                 ]
             },
             {
                 label: 'MS Operation',
                 items: [
-                    { label: 'MS Operation', icon: 'pi pi-fw pi-cog', routerLink: ['/'] }
+                    { label: 'MS Operation', icon: 'pi pi-fw pi-cog', routerLink: ['ms/msoperations'] }
                 ]
             },
-
-            
+            {
+                label: 'Contact Matrix',
+                items: [
+                    { label: 'Contact Matrix', icon: 'pi pi-fw pi-sort-up', routerLink: ['cm/contactmatrix'] }
+                ]
+            },
+            {
+                label: 'General Best Practice',
+                items: [
+                    { label: 'General Best Practice', icon: 'pi pi-fw pi-book', routerLink: ['general/bp'] }
+                
+                ]
+            },
+          
+           
+            {
+                label: 'Service Coverage',
+                items: [
+                    { label: 'Service Coverage', icon: 'pi pi-fw pi-wrench', routerLink: ['sc/service-coverage'] }
+                ]
+            },
+           
             {
                 label: 'UI Components',
                 items: [

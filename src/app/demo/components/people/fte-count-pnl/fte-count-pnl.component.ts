@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SelectItem } from 'primeng/api';
 import { CountryService } from 'src/app/demo/service/country.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { FinancialLabModel } from './fte-count-pnl.model';
+import { ApiService } from 'src/app/demo/api/api.service';
 
 @Component({
   selector: 'app-fte-count-pnl',
@@ -54,7 +57,10 @@ import { CountryService } from 'src/app/demo/service/country.service';
 `]
 })
 export class FteCountPnlComponent implements OnInit {
-
+    valRadio: string = '';
+    formValue !: FormGroup ;
+	FinancialLabModel:FinancialLabModel=new FinancialLabModel();
+	
   countries: any[] = [];
 
     filteredCountries: any[] = [];
@@ -65,7 +71,7 @@ export class FteCountPnlComponent implements OnInit {
 
     valColor = '#424242';
 
-    valRadio: string = '';
+    
 
     valCheck: string[] = [];
 
@@ -91,7 +97,7 @@ export class FteCountPnlComponent implements OnInit {
 
     valueKnob = 20;
 
-    constructor(private countryService: CountryService) { }
+    constructor(private countryService: CountryService ,private formbuilder:FormBuilder , private api:ApiService) { }
 
     
 
@@ -99,7 +105,28 @@ export class FteCountPnlComponent implements OnInit {
         this.countryService.getCountries().then(countries => {
             this.countries = countries;
         });
+
+        this.formValue=this.formbuilder.group({
+            textarea : [''],
+            Yes : [''],
+            No : [''],
+            Other: ['']
+          })
     }
+    postFinancialLabDetails(){
+        this.FinancialLabModel.FTEtextarea=this.formValue.value.textarea
+        this.FinancialLabModel.FTEcompliances=this.formValue.value.Yes
+        this.FinancialLabModel.FTEcompliances=this.formValue.value.No
+        this.FinancialLabModel.FTEcompliances=this.formValue.value.Other
+        this.api.postComment(this.FinancialLabModel)
+        .subscribe(res=>{
+          console.log(res);
+          alert("Financial LAB Added Successfully")
+        },
+        err=>{
+          alert("something went wrong")
+        })
+      }
     filterCountry(event: any) {
         const filtered: any[] = [];
         const query = event.query;

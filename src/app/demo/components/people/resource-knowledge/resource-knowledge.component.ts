@@ -1,9 +1,8 @@
-import { ApiService } from './../../../api/api.service';
-import { ResourceKnowledgeModel } from './resource-knowledge.model';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MenuItem, Message, MessageService, SelectItem } from 'primeng/api';
+import { TabMenuModule } from 'primeng/tabmenu';
+import { Component, OnInit, } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenuItem,MessageService, SelectItem } from 'primeng/api';
 import { CountryService } from 'src/app/demo/service/country.service';
-import{FormBuilder,FormGroup}from '@angular/forms'
 
 @Component({
   selector: 'app-resource-knowledge',
@@ -62,12 +61,17 @@ providers: [MessageService]
 
 })
 export class ResourceKnowledgeComponent implements OnInit {
-    formValue !: FormGroup;
-    resourceknowledgeModelObj: ResourceKnowledgeModel=new ResourceKnowledgeModel();
+    onSubmit(){
+        this.valCheck=this.valCheck.filter(x=>x.valueOf)
+    this.isValid=true
+    }
+    GetSelectedBox(event:any){
+        console.log(event ,this.valCheck)
+    }
+    isValid:boolean=false;
 
 
-    countries: any[] = [];
-
+    countries: any[] = []
     filteredCountries: any[] = [];
 
     selectedCountryAdvanced: any[] = [];
@@ -102,17 +106,30 @@ export class ResourceKnowledgeComponent implements OnInit {
 
     valueKnob = 20;
 
-    constructor(private countryService: CountryService , private formbuilder: FormBuilder , private api:ApiService, private service: MessageService) { }
 
+    tieredItems!: MenuItem[];
+
+    items!: MenuItem[] ;
+   
     
+    routeItems!:  MenuItem[];
+    menuItems!: MenuItem[];
+    plainMenuItems!: MenuItem[];
+
+    constructor(private countryService: CountryService ,  private service: MessageService  ) {}
 
     ngOnInit() {
-        this.formValue = this.formbuilder.group({
-            textarea: [''],
-        })
         this.countryService.getCountries().then(countries => {
             this.countries = countries;
         });
+
+        this.routeItems = [
+            { label: 'Bar', routerLink: 'bar' },
+            { label: 'OpsDBA', routerLink: 'opsdba' },
+            { label: 'PerfDBA', routerLink: 'perfdba' },
+            { label: 'ETL', routerLink: 'etl' },
+        ];
+
     }
     filterCountry(event: any) {
         const filtered: any[] = [];
@@ -126,53 +143,8 @@ export class ResourceKnowledgeComponent implements OnInit {
 
         this.filteredCountries = filtered;
     }
-    postTextArea(){
-        this.resourceknowledgeModelObj.textarea = this.formValue.value.textarea;
-        this.api.postComment(this.resourceknowledgeModelObj)
-        .subscribe(res=>{
-            console.log(res);
-            alert("Comment Added Successfully")
-        },
-        err=>{
-            alert('Something went wrong')
-        })
-    }
-
-    msgs: Message[] = [];
-
-    showInfoViaToast() {
-        this.service.add({ key: 'tst', severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
-    }
-
-    showWarnViaToast() {
-        this.service.add({ key: 'tst', severity: 'warn', summary: 'Warn Message', detail: 'There are unsaved changes' });
-    }
-
-    showErrorViaToast() {
-        this.service.add({ key: 'tst', severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
-    }
-
-    showSuccessViaToast() {
-        this.service.add({ key: 'tst', severity: 'success', summary: 'Success Message', detail: 'Message sent' });
-    }
-
-    showInfoViaMessages() {
-        this.msgs = [];
-        this.msgs.push({ severity: 'info', summary: 'Info Message', detail: 'PrimeNG rocks' });
-    }
-
-    showWarnViaMessages() {
-        this.msgs = [];
-        this.msgs.push({ severity: 'warn', summary: 'Warn Message', detail: 'There are unsaved changes' });
-    }
-
-    showErrorViaMessages() {
-        this.msgs = [];
-        this.msgs.push({ severity: 'error', summary: 'Error Message', detail: 'Validation failed' });
-    }
-
-    showSuccessViaMessages() {
-        this.msgs = [];
-        this.msgs.push({ severity: 'success', summary: 'Success Message', detail: 'Message sent' });
+    onTabclick(i:number){
+        console.log(this.routeItems[i])
     }
 }
+

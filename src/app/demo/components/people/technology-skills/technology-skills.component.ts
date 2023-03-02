@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
+import { MenuItem, SelectItem } from 'primeng/api';
 import { CountryService } from 'src/app/demo/service/country.service';
 
 @Component({
@@ -54,6 +54,14 @@ import { CountryService } from 'src/app/demo/service/country.service';
 `]
 })
 export class TechnologySkillsComponent implements OnInit {
+    activeItem!: MenuItem;
+    onSubmit(){
+        this.isValid=true
+    }
+    GetSelectedBox(event:any){
+        console.log(event ,this.valCheck)
+    }
+    isValid:boolean=false
   countries: any[] = [];
 
   filteredCountries: any[] = [];
@@ -90,6 +98,11 @@ export class TechnologySkillsComponent implements OnInit {
 
   valueKnob = 20;
 
+  items!: MenuItem[] ;
+
+  routeItems!:  MenuItem[];
+  menuItems!: MenuItem[];
+  plainMenuItems!: MenuItem[];
   constructor(private countryService: CountryService) { }
 
   
@@ -98,6 +111,15 @@ export class TechnologySkillsComponent implements OnInit {
       this.countryService.getCountries().then(countries => {
           this.countries = countries;
       });
+
+      
+      this.routeItems = [
+        { label: 'Bar', routerLink: 'tsbar' },
+        { label: 'OpsDBA', routerLink: 'tsopsdba' },
+        { label: 'PerfDBA', routerLink: 'tsperfdba' },
+        { label: 'ETL', routerLink: 'tsetl' },
+    ];
+    this.activeItem = this.routeItems[0];
   }
   filterCountry(event: any) {
       const filtered: any[] = [];

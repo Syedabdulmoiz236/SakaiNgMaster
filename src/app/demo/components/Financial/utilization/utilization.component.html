@@ -1,0 +1,49 @@
+<h2>Utilization/Partial Billable</h2>
+<div class="card ">
+		<h6>Please Select the options you want to perform:</h6>
+		<div class="p-d-flex">
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="FTE" [(ngModel)]="valCheck" (onChange)="GetSelectedBox($event)" id="ny"></p-checkbox>
+					<label for="ny">FTE</label>
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Billable Hours" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Billable Hours per FTE</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Utilization Bar" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">BAR</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Utilization Ops " [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Ops DBA</label>
+					
+				</div>
+			</div>
+			<div class="col-12 md:col-4">
+				<div class="field-checkbox">
+					<p-checkbox name="group1" value="Utlization Perf" [(ngModel)]="valCheck"(onChange)="GetSelectedBox($event)" id="sf"></p-checkbox>
+					<label for="sf">Perf DBA</label>
+					
+				</div>
+			</div>
+		</div>
+
+ 
+			<div class="Button">
+				<button pButton pRipple type="button" (click)="onSubmit()" label="Submit" class="p-button-raised p-button-secondary mr-2 mb-2"></button>
+			</div>
+			<div *ngIf="isValid">
+					<p-tabMenu styleClass="mb-5" [model]="routeItems"></p-tabMenu>
+					<router-outlet ></router-outlet>
+			</div>	
+</div>

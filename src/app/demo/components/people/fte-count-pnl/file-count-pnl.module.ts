@@ -2,7 +2,7 @@ import { FteCountPnlRoutingModule } from './file-count-pnl-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FteCountPnlComponent } from './fte-count-pnl.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
@@ -26,6 +26,7 @@ import { TableModule } from 'primeng/table';
         RouterModule,
         InputTextareaModule,
         RadioButtonModule,
+        ReactiveFormsModule
     ],
     declarations:[FteCountPnlComponent]
 })

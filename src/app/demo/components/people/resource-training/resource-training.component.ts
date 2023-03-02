@@ -1,10 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MenuItem, SelectItem } from 'primeng/api';
-import { Subscription } from 'rxjs';
-import { Product } from 'src/app/demo/api/product';
 import { CountryService } from 'src/app/demo/service/country.service';
-import { ProductService } from 'src/app/demo/service/product.service';
-import { LayoutService } from 'src/app/layout/service/app.layout.service';
 
 @Component({
   selector: 'app-resource-training',
@@ -59,6 +55,17 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 })
 
 export class ResourceTrainingComponent implements OnInit {
+    activeItem!: MenuItem;
+
+
+onSubmit(){
+    this.valCheck=this.valCheck.filter(x=>x.valueOf)
+this.isValid=true
+}
+GetSelectedBox(event:any){
+    console.log(event ,this.valCheck)
+}
+    isValid:boolean=false;
     countries: any[] = [];
 
     filteredCountries: any[] = [];
@@ -92,8 +99,13 @@ export class ResourceTrainingComponent implements OnInit {
     valSelect1: string = "";
 
     valSelect2: string = "";
-
+activeitem!: MenuItem
     valueKnob = 20;
+    items!: MenuItem[] ;
+
+    routeItems!:  MenuItem[];
+    menuItems!: MenuItem[];
+    plainMenuItems!: MenuItem[];
 
     constructor(private countryService: CountryService) { }
 
@@ -103,6 +115,13 @@ export class ResourceTrainingComponent implements OnInit {
         this.countryService.getCountries().then(countries => {
             this.countries = countries;
         });
+        this.routeItems = [
+            { label: 'Bar', routerLink: 'rtbar' },
+            { label: 'OpsDBA', routerLink: 'rtopsdba' },
+            { label: 'PerfDBA', routerLink: 'rtperfdba' },
+            { label: 'ETL', routerLink: 'rtetl' },
+        ];
+        this.activeItem = this.routeItems[0];
     }
     filterCountry(event: any) {
         const filtered: any[] = [];

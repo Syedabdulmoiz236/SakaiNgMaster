@@ -1,4 +1,4 @@
-import { OthersModule } from './others/others.module';
+
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
